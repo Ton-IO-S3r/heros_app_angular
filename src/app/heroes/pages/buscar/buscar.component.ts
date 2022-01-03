@@ -12,14 +12,14 @@ export class BuscarComponent implements OnInit {
   
   termino: string = '';
   heroes: Heroe[] = [];
-  selectedHero!: Heroe;
+  selectedHero: Heroe | undefined;
   constructor(private heoresService: HeroesService) { }
 
   ngOnInit(): void {
   }
 
   buscando = () => {
-    this.heoresService.getSearchSuggestions(this.termino)
+    this.heoresService.getSearchSuggestions(this.termino.trim())
         .subscribe(
           {
             next: heroes => this.heroes = heroes,
@@ -30,11 +30,11 @@ export class BuscarComponent implements OnInit {
 
   getSelected = (event: MatAutocompleteSelectedEvent) => {
     if (!event.option.value) {
-      this.termino = '';
+      this.selectedHero = undefined
       return
     }
     this.selectedHero = event.option.value;
-    this.termino = this.selectedHero.superhero;
+    this.termino = event.option.value.superhero;
 
 
   }
