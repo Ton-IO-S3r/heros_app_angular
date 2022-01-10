@@ -12,7 +12,7 @@
         <span>Listado de heroes</span>
         <mat-icon mat-list-icon>label</mat-icon>
       </a>
-      <a routerLink="./listado" mat-list-item (click)="sidenav.toggle()">
+      <a routerLink="./agregar" mat-list-item (click)="sidenav.toggle()">
         <span>Añadir heroes</span>
         <mat-icon mat-list-icon>add</mat-icon>
       </a>
@@ -27,7 +27,8 @@
       <mat-icon>menu</mat-icon>
     </button>
     <span class="spacer"></span>
-    <button mat-button>Log out</button>
+    <span>{{currentUser.usuario}}</span>
+    <button mat-button (click)="logout()">Log out</button>
   </mat-toolbar>
   <div class="container">
     <router-outlet></router-outlet>
